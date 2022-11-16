@@ -30,7 +30,7 @@ def create_article():
             db.session.commit()
             return redirect('/Albums')
         except:
-            return "Помилка!"
+            return "Error!"
     else:
         return render_template("CreateAlbum.html")
 
@@ -38,6 +38,25 @@ def create_article():
 def edit_mode():
     albums = Album.query.order_by(Album.id).all()
     return render_template('Albums_editor.html', Album=albums)
+
+
+@views.route('/album/<int:id>/edit', methods=['POST', 'GET'])
+def album_edit(id):
+    album = Album.query.get(id)
+    if request.method == 'POST':
+        album.photo = request.form['photo']
+        album.title = request.form['title']
+        album.year = request.form['year']
+        album.description = request.form['description']
+
+        try:
+            db.session.commit()
+            return redirect('/Albums')
+        except:
+            return "Error!"
+    else:
+
+        return render_template("edit_album.html", album=album)
 
 
 @views.route('/album/<int:id>/delete')
