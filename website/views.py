@@ -34,6 +34,22 @@ def create_article():
     else:
         return render_template("CreateAlbum.html")
 
+@views.route('/Albums/edit')
+def edit_mode():
+    albums = Album.query.order_by(Album.id).all()
+    return render_template('Albums_editor.html', Album=albums)
+
+
+@views.route('/album/<int:id>/delete')
+def delete_album(id):
+    album = Album.query.get_or_404(id)
+    try:
+        db.session.delete(album)
+        db.session.commit()
+        return redirect('/Albums')
+    except:
+        return 'Error'
+
 
 @views.route('/Albums')
 def posts():

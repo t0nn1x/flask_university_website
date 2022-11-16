@@ -1,60 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+
+<body>
+  <!DOCTYPE html>
+  <html lang="en">
+
+  <head>
     <meta charset="UTF-8">
     <title>Albums</title>
-   <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-      crossorigin="anonymous"
-    />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
     <style>
-      .divImg{
-          position: relative;
-          margin-top: 35px;
-          margin-left: 60px;
+      .divImg {
+        position: relative;
+        margin-top: 35px;
+        margin-left: 60px;
       }
-      .img{
+
+      .img {
         width: 150px;
         height: 150px;
         border-radius: 20px;
       }
-      nav
-      {
+
+      nav {
         position: relative;
       }
-      body{
+
+      body {
         margin: 0;
       }
-      .color{
+
+      .color {
         position: relative;
-          height: 100vh;
+        height: 100vh;
       }
-      .container-md{
+
+      .container-md {
         position: relative;
         padding-top: 20px;
       }
-      .Album
-      {
-        font-family:sans-serif;
+
+      .Album {
+        font-family: sans-serif;
         border: 2px solid black;
         border-radius: 20px;
-        width: 274px ;
-        height: 350px;
+        width: 274px;
+        height: 390px;
         position: relative;
         margin-left: 40px;
         margin-top: 20px;
       }
-      .title{
+
+      .title {
         text-align: center;
       }
-      .year
-      {
+
+      .year {
         text-align: center;
         font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
       }
-      .description{
+
+      .description {
         width: 264px;
         text-align: center;
         position: relative;
@@ -62,22 +74,22 @@
         height: 76px;
         overflow-y: scroll;
       }
-      .Albums
-      {
+
+      .Albums {
         display: flex;
         flex-wrap: wrap;
       }
+      .controls{
+        text-align: center;
+        margin-top: 6px;
+      }
     </style>
-</head>
-<body>
- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container-fluid">
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbar"
-        >
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbar">
@@ -86,31 +98,40 @@
             <a class="nav-item nav-link" href="/login">Login</a>
             <a class="nav-item nav-link" href="/sign-up">Sign Up</a>
             <a class="nac item nav-link" href="/add_album">Add Album</a>
-              <a class="nac item nav-link" href="/Albums/edit">Edit Albums</a>
+            <a class="nac item nav-link" href="/Albums/edit">Edit Albums</a>
           </div>
         </div>
       </div>
     </nav>
     <div class="container-md ">
       <div class="Albums color">
-          {% for el in Album%}
+        {% for el in Album%}
           <div class="Album">
               <div class="divImg"><img class="img" src="{{el.photo}}" alt="photo"></div>
               <div class="title"><h2>{{el.title}}</h2></div>
               <div class="year">{{el.year}}</div>
               <div class="description">{{el.description}}</div>
+          <div class="controls">
+            <a href="/album/{{el.id}}/edit" class="btn btn-success">Edit</a>
+            <a href="/album/{{el.id}}/delete" class="btn btn-danger">Delete</a>
           </div>
-          {% endfor %}
+          </div>
+            {% endfor %}
       </div>
+      
+      </div>
+    </div>
     </div>
 
 
 
 
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-      crossorigin="anonymous"
-    ></script>
+      crossorigin="anonymous"></script>
+  </body>
+
+  </html>
 </body>
+
 </html>
