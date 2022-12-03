@@ -14,7 +14,7 @@ def home():
 
 #@views.route('/Create-Albums')
 #def create_albums_page():
-#   return render_template('CreateAlbum.html', name=current_user.username)
+#   return render_template('createAlbum.html', name=current_user.username)
 
 @views.route('/add_album', methods=['POST', 'GET'])
 def create_article():
@@ -32,12 +32,12 @@ def create_article():
         except:
             return "Error!"
     else:
-        return render_template("CreateAlbum.html")
+        return render_template("createAlbum.html")
 
 @views.route('/Albums/edit')
 def edit_mode():
     albums = Album.query.order_by(Album.id).all()
-    return render_template('Albums_editor.html', Album=albums)
+    return render_template('albums_editor.html', Album=albums)
 
 
 @views.route('/album/<int:id>/edit', methods=['POST', 'GET'])
@@ -73,4 +73,4 @@ def delete_album(id):
 @views.route('/Albums')
 def posts():
     albums = Album.query.order_by(Album.id).all()
-    return render_template('Albums.html', Album=albums)
+    return render_template('albums.html', Album=albums)
