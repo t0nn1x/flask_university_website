@@ -12,9 +12,7 @@ views = Blueprint("views", __name__)
 def home():
     return render_template("home.html", name=current_user.username)
 
-#@views.route('/Create-Albums')
-#def create_albums_page():
-#   return render_template('createAlbum.html', name=current_user.username)
+
 
 @views.route('/add_album', methods=['POST', 'GET'])
 def create_article():

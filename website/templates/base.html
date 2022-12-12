@@ -11,28 +11,19 @@
       crossorigin="anonymous"
     />
     <title>{% block title %}{% endblock %}</title>
+    <style> 
+      body {
+        background: #dfc2f2;
+        background-image: linear-gradient(to right, #ffffb3, #ffe6e6);
+        background-attachment: fixed;
+        background-size: cover;
+      }
+    </style>
+    {% block style%} {% endblock %}
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <div class="container-fluid">
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbar"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbar">
-          <div class="navbar-nav">
-            <a class="nav-item nav-link" href="/home">Home</a>
-            <a class="nav-item nav-link" href="/login">Login</a>
-            <a class="nav-item nav-link" href="/sign-up">Sign Up</a>
-            <a class="nav-item nav-link" href="/Albums">Albums</a>
-          </div>
-        </div>
-      </div>
-    </nav>
+    {% block navbar %}
+    {% endblock %}
     {% with messages = get_flashed_messages(with_categories=True)%}
       {% if messages %}
         {% for category, message in messages %}
