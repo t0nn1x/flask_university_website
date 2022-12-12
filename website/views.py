@@ -3,19 +3,19 @@ from flask_login import login_required, current_user
 from .models import Album
 from . import db
 
-views = Blueprint("views", __name__)
+views = Blueprint("views", __name__) # створюємо Blueprint для реєстрації і входу в систему
 
 
-@views.route("/")
-@views.route("/home")
-@login_required
-def home():
-    return render_template("home.html", name=current_user.username)
+@views.route("/") # створюємо роут для головної сторінки
+@views.route("/home") 
+@login_required # використовуємо декоратор login_required для того, щоб користувач міг перейти на головну сторінку тільки після входу в систему
+def home(): 
+    return render_template("home.html", name=current_user.username) 
 
 
 
-@views.route('/add_album', methods=['POST', 'GET'])
-def create_article():
+@views.route('/add_album', methods=['POST', 'GET']) # створюємо роут для створення нового альбому
+def create_article(): 
     if request.method == 'POST':
         photo = request.form['photo']
         title = request.form['title']
@@ -32,13 +32,13 @@ def create_article():
     else:
         return render_template("createAlbum.html")
 
-@views.route('/Albums/edit')
+@views.route('/Albums/edit') # створюємо роут для редагування альбому
 def edit_mode():
     albums = Album.query.order_by(Album.id).all()
     return render_template('albums_editor.html', Album=albums)
 
 
-@views.route('/album/<int:id>/edit', methods=['POST', 'GET'])
+@views.route('/album/<int:id>/edit', methods=['POST', 'GET']) # створюємо роут для редагування альбому
 def album_edit(id):
     album = Album.query.get(id)
     if request.method == 'POST':
@@ -57,7 +57,7 @@ def album_edit(id):
         return render_template("edit_album.html", album=album)
 
 
-@views.route('/album/<int:id>/delete')
+@views.route('/album/<int:id>/delete') # створюємо роут для видалення альбому
 def delete_album(id):
     album = Album.query.get_or_404(id)
     try:
@@ -68,7 +68,7 @@ def delete_album(id):
         return 'Error'
 
 
-@views.route('/Albums')
+@views.route('/Albums') # створюємо роут для виведення всіх альбомів
 def posts():
     albums = Album.query.order_by(Album.id).all()
     return render_template('albums.html', Album=albums)

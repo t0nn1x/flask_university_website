@@ -5,7 +5,7 @@ from flask_login import login_user, login_required, logout_user, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 
 
-auth = Blueprint("auth", __name__)
+auth = Blueprint("auth", __name__) # створюємо Blueprint для реєстрації і входу в систему
 
 @auth.route("/login", methods=["GET", "POST"])
 def login():
@@ -33,7 +33,7 @@ def login():
 
 
 @auth.route("/sign-up", methods = ["GET", "POST"])
-def sign_up():
+def sign_up(): 
     if request.method == "POST":
         email = request.form.get("email")
         username = request.form.get("username")
